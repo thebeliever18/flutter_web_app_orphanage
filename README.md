@@ -1,6 +1,6 @@
-# desktopApp
+# webApp
 
-A new Flutter project.
+A web app for orphanage
 
 ## Getting Started
 
