@@ -1,4 +1,3 @@
-
 calculateAge(DateTime birthDate) {
   DateTime currentDate = DateTime.now();
   int age = currentDate.year - birthDate.year;
@@ -13,5 +12,5 @@ calculateAge(DateTime birthDate) {
       age--;
     }
   }
-  return age;
+  return age.toString();
 }

@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:desktopApp/logic/calculate_age.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 
@@ -15,6 +16,7 @@ class UserRegistration extends StatefulWidget {
 }
 
 class _UserRegistrationState extends State<UserRegistration> {
+  TextEditingController _ageController;
   bool imagePlaced = false;
   Uint8List fromPicker;
   Future getImage() async {
@@ -29,6 +31,12 @@ class _UserRegistrationState extends State<UserRegistration> {
     });
   }
 
+  @override
+  void initState() {
+    super.initState();
+    _ageController = TextEditingController(text: "undefined");
+  }
+
   List<String> _gender = ['Male', 'Female', 'Others']; // Option 2
   String _selectedgender; // Option 2
 
@@ -36,6 +44,7 @@ class _UserRegistrationState extends State<UserRegistration> {
   String displayDateOfBirth;
   DateTime _dateTimeForDoB;
   DateTime _dateTimeForDateOnly;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -173,33 +182,19 @@ class _UserRegistrationState extends State<UserRegistration> {
                               setState(() {
                                 _dateTimeForDoB = date;
                                 displayDateOfBirth = null;
+                                _ageController.text =
+                                    calculateAge(_dateTimeForDoB);
                               });
                             });
                           },
                           child: Container(
                               height: 49.0,
-                              // color: Colors.grey,
                               decoration: BoxDecoration(
                                 color: Colors.grey,
-                                border: Border.all(
-                                    //color: Colors.grey,
-                                    //color: Colors.red[500],
-                                    ),
+                                border: Border.all(),
                               ),
                               child: Row(
                                 children: <Widget>[
-                                  // Expanded(
-                                  //   child: Column(
-                                  //     mainAxisAlignment: MainAxisAlignment.center,
-                                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                                  //     children: <Widget>[
-                                  //       Text(
-                                  //         "   Date",
-                                  //         style: TextStyle(fontSize: 15.0,color: Colors.grey[800])
-                                  //       ),
-                                  //     ],
-                                  //   ),
-                                  // ),
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
@@ -238,6 +233,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                         Container(
                           height: 49.0,
                           child: TextField(
+                            controller: _ageController,
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.grey,
@@ -294,16 +290,6 @@ class _UserRegistrationState extends State<UserRegistration> {
                             ),
                           ),
                         )
-                        // Container(
-                        //   height: 49.0,
-                        //   child: TextField(
-                        //     decoration: InputDecoration(
-                        //       filled: true,
-                        //       fillColor: Colors.grey,
-                        //       hintText: "Choose gender",
-                        //     ),
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),
