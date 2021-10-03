@@ -40,8 +40,6 @@ class _UserRegistrationState extends State<UserRegistration> {
   List<String> _gender = ['Male', 'Female', 'Others']; // Option 2
   String _selectedgender; // Option 2
 
-  String displayDateOnly;
-  String displayDateOfBirth;
   DateTime _dateTimeForDoB;
   DateTime _dateTimeForDateOnly;
 
@@ -518,29 +516,5 @@ class _UserRegistrationState extends State<UserRegistration> {
         ),
       ),
     );
-  }
-
-  covertDateTimeDateOfBirth(_dateTime) {
-    if (_dateTime == null && displayDateOfBirth == null) {
-      return "  Enter date of birth";
-    } else if (displayDateOfBirth is String) {
-      return "  $displayDateOfBirth";
-    } else {
-      var date = DateTime.parse("$_dateTime");
-      var formattedDate = "  ${date.month}-${date.day}-${date.year}";
-      return formattedDate;
-    }
-  }
-
-  covertDateTimeDate(_dateTime) {
-    if (_dateTime == null && displayDateOnly == null) {
-      return "  Choose date";
-    } else if (displayDateOnly is String) {
-      return "  $displayDateOnly";
-    } else {
-      var date = DateTime.parse("$_dateTime");
-      var formattedDate = "  ${date.month}-${date.day}-${date.year}";
-      return formattedDate;
-    }
   }
 }
